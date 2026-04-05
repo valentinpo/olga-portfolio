@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eoe66 | Data Analyst</title>
+    <meta name="description" content="Ольга Егорова — аналитик данных. Визуализация, инсайты, автоматизация.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --bg-secondary: #050505;
+            --neon-blue: #00d4ff;
+            --neon-purple: #9d4edd;
+            --neon-pink: #ff00aa;
+            --text-color: #e0e0e0;
+            --text-dim: #888;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --border-color: #333;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .blink { animation: blink 2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: var(--neon-blue);
+            animation: blink 1s infinite;
+            vertical-align: bottom;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #0d1b2a 0%, #0a0a0a 100%);
+            padding: 40px 20px;
+        }
+
+        .hero .container {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: var(--font-mono);
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            color: var(--neon-purple);
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-quote {
+            color: var(--text-dim);
+            font-style: italic;
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        /* Stats */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* Terminal */
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            font-size: 0.85rem;
+            color: #666;
+            font-family: var(--font-mono);
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            min-height: 160px;
+            color: var(--neon-blue);
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 35px;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+            background: transparent;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--neon-purple);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(157, 78, 221, 0.5);
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            padding: 80px 20px;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .system-status {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: #444;
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #222;
+        }
+
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--text-color);
+            margin: 0 0 50px;
+            text-align: left;
+            border-left: 5px solid var(--neon-blue);
+            padding-left: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .tech-card:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.15);
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .tech-name {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* Projects */
+        .projects {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-color) 100%);
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 25px rgba(157, 78, 221, 0.2);
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--neon-purple);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .project-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .project-metrics {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            font-family: var(--font-mono);
+        }
+
+        .project-metrics span::before {
+            content: '📊 ';
+        }
+
+        /* Services */
+        .services {
+            padding: 80px 20px;
+            background: var(--bg-color);
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(255, 0, 170, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .service-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .service-features li::before {
+            content: '✓ ';
+            color: var(--neon-blue);
+            margin-right: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            border-top: 2px solid var(--neon-blue);
+            padding: 60px 20px 30px;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--neon-blue);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .footer-links a::before {
+            content: '→ ';
+            opacity: 0;
+            transition: 0.3s;
+            margin-right: -10px;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            margin-right: 5px;
+        }
+
+        .system-info p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            font-family: var(--font-mono);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            color: #444;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 768px) {
+            .stats-container { gap: 15px; }
+            .stat-number { font-size: 1.5rem; }
+            .system-status { flex-direction: column; text-align: center; }
+            .section-title {
+                text-align: center;
+                border-left: none;
+                border-bottom: 5px solid var(--neon-blue);
+                padding-bottom: 10px;
+                padding-left: 0;
+            }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>// eoe66</h1>
+            <p class="hero-subtitle">> Data Analyst</p>
+            <p class="hero-quote">«Делаю то, что люблю. Люблю то, что делаю. На все 100%»</p>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Проектов</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Отраслей</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Вовлечённость</span>
+                </div>
+            </div>
+            
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span>python — eoe66@data-node:~</span>
+                </div>
+                <div class="terminal-body" id="typewriter"></div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="https://t.me/eoe66eoe" target="_blank" class="cta-button">
+                    > Связаться_
+                </a>
+                <a href="https://github.com/eoe66" target="_blank" class="cta-button secondary">
+                    > Портфолио_
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <div class="container">
+            <div class="system-status">
+                <span>SYS.STATUS: <span class="blink">ANALYZING</span></span>
+                <span>DATA_SOURCES: 12</span>
+                <span>MODELS: TRAINED</span>
+            </div>
+
+            <h2 class="section-title">TECH_STACK</h2>
+            
+            <div class="stack-grid">
+                <div class="tech-card">
+                    <span class="tech-icon">🐍</span>
+                    <span class="tech-name">Python</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">🗄️</span>
+                    <span class="tech-name">PostgreSQL</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">⚡</span>
+                    <span class="tech-name">ClickHouse</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">📊</span>
+                    <span class="tech-name">pandas</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">🔢</span>
+                    <span class="tech-name">NumPy</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">📈</span>
+                    <span class="tech-name">Matplotlib</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">🎨</span>
+                    <span class="tech-name">Seaborn</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">🔭</span>
+                    <span class="tech-name">DataLens</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">🔥</span>
+                    <span class="tech-name">PySpark</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">🧪</span>
+                    <span class="tech-name">SciPy</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">⚙️</span>
+                    <span class="tech-name">AirFlow</span>
+                </div>
+                <div class="tech-card">
+                    <span class="tech-icon">📋</span>
+                    <span class="tech-name">Google Sheets</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects">
+        <div class="container">
+            <div class="system-status">
+                <span>SYS.MODULE: PORTFOLIO</span>
+                <span>CATEGORIES: 6</span>
+                <span class="blink">● UPDATED</span>
+            </div>
+
+            <h2 class="section-title">SELECTED_PROJECTS</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-tag">🎬 Стриминг</span>
+                    <h3>Анализ пользовательского поведения</h3>
+                    <p>Сегментация аудитории, прогноз оттока, рекомендации контента для стриминговой платформы.</p>
+                    <div class="project-metrics">
+                        <span>Accuracy: 94%</span>
+                        <span>Users: 50K+</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">🛒 E-commerce</span>
+                    <h3>Оптимизация воронки продаж</h3>
+                    <p>Выявление узких мест, A/B-тесты, рост конверсии на 23% за счёт data-driven решений.</p>
+                    <div class="project-metrics">
+                        <span>Conversion: +23%</span>
+                        <span>Revenue: +18%</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">📱 Мобильные приложения</span>
+                    <h3>Мониторинг метрик продукта</h3>
+                    <p>Дашборды в DataLens, алерты по аномалиям, автоматические отчёты для команды.</p>
+                    <div class="project-metrics">
+                        <span>DAU tracked</span>
+                        <span>Real-time</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">❤️ Соцпроекты</span>
+                    <h3>Анализ эффективности НКО</h3>
+                    <p>Оценка воздействия благотворительных программ, визуализация результатов для доноров.</p>
+                    <div class="project-metrics">
+                        <span>Impact measured</span>
+                        <span>Transparency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="system-status">
+                <span>SYS.MODULE: SERVICES</span>
+                <span>AVAILABLE: 4</span>
+                <span class="blink">● ACCEPTING</span>
+            </div>
+
+            <h2 class="section-title">WHAT_I_DO</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>DATA EXPLORATION</h3>
+                    <p>Исследовательский анализ, поиск инсайтов, гипотезы на основе данных.</p>
+                    <ul class="service-features">
+                        <li>EDA & статистика</li>
+                        <li>Визуализация</li>
+                        <li>Отчёты в Jupyter</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>DASHBOARDS</h3>
+                    <p>Интерактивные дашборды для мониторинга KPI и принятия решений.</p>
+                    <ul class="service-features">
+                        <li>DataLens / Tableau</li>
+                        <li>Auto-refresh</li>
+                        <li>Alerts & anomalies</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AUTOMATION</h3>
+                    <p>Автоматизация сбора, очистки и отчётности — экономия часов ручной работы.</p>
+                    <ul class="service-features">
+                        <li>ETL-пайплайны</li>
+                        <li>AirFlow / cron</li>
+                        <li>API интеграции</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>CONSULTING</h3>
+                    <p>Помощь в постановке аналитических задач, выбор метрик, интерпретация результатов.</p>
+                    <ul class="service-features">
+                        <li>Метрики продукта</li>
+                        <li>A/B-тесты</li>
+                        <li>Стратегия данных</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-col">
+                    <h4>// CONTACTS</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://t.me/eoe66eoe" target="_blank">✈️ Telegram: @eoe66eoe</a></li>
+                        <li><a href="mailto:eoe66eoe@gmail.com">📧 eoe66eoe@gmail.com</a></li>
+                        <li><a href="https://github.com/eoe66" target="_blank">🐙 GitHub: @eoe66</a></li>
+                        <li>📍 Екатеринбург, Россия</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>// VALUES</h4>
+                    <ul class="footer-links">
+                        <li>✓ Честность в данных</li>
+                        <li>✓ Ответственность за результат</li>
+                        <li>✓ Уважение к заказчику</li>
+                        <li>✓ Простота решений</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>// SYSTEM_INFO</h4>
+                    <div class="system-info">
+                        <p>UPTIME: <span id="uptime">00:00:00</span></p>
+                        <p>VERSION: 1.0.0 (stable)</p>
+                        <p>SERVER: eoe66@data-node</p>
+                        <p>LAST_UPDATE: <span id="last-update"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025-2026 eoe66 // Data with ❤️</p>
+                <p style="font-size:0.75rem;color:#333">Built with Python, passion & terminal vibes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typewriter animation
+        const textLines = [
+            "> import pandas as pd",
+            "> from insights import discover",
+            "> loading datasets... [OK]",
+            "> training models... [OK]",
+            "> generating insights... [OK]",
+            "> Ready to analyze your data_"
+        ];
+
+        function initTypewriter() {
+            const terminalBody = document.getElementById('typewriter');
+            if (!terminalBody) return;
+            let lineIndex = 0, charIndex = 0;
+
+            function typeLine() {
+                if (lineIndex < textLines.length) {
+                    if (charIndex === 0) {
+                        const newLine = document.createElement('div');
+                        newLine.id = `line-${lineIndex}`;
+                        terminalBody.appendChild(newLine);
+                    }
+                    const currentLineEl = document.getElementById(`line-${lineIndex}`);
+                    document.querySelectorAll('.cursor').forEach(c => c.remove());
+                    const cursor = document.createElement('span');
+                    cursor.className = 'cursor';
+                    currentLineEl.appendChild(cursor);
+
+                    if (charIndex < textLines[lineIndex].length) {
+                        cursor.before(textLines[lineIndex].charAt(charIndex));
+                        charIndex++;
+                        setTimeout(typeLine, 50);
+                    } else {
+                        lineIndex++; charIndex = 0;
+                        setTimeout(typeLine, 300);
+                    }
+                }
+            }
+            typeLine();
+        }
+
+        // Uptime counter
+        let startTime = Date.now();
+        setInterval(() => {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const h = String(Math.floor(elapsed / 3600)).padStart(2, '0');
+            const m = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
+            const s = String(elapsed % 60).padStart(2, '0');
+            document.getElementById('uptime').textContent = `${h}:${m}:${s}`;
+        }, 1000);
+
+        // Last update date
+        document.getElementById('last-update').textContent = new Date().toLocaleDateString('ru-RU');
+
+        // Init on load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('📊 eoe66 Data System Initializing...');
+            initTypewriter();
+            console.log('✅ All modules loaded successfully.');
+        });
+    </script>
+</body>
+</html>
